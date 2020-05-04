@@ -1,0 +1,95 @@
+= API documentation
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+== Tender API
+
+=== Create tender
+
+==== Request structure
+include::{snippets}/create_tender/http-request.adoc[]
+
+==== Example response
+include::{snippets}/create_tender/http-response.adoc[]
+
+==== CURL request
+include::{snippets}/create_tender/curl-request.adoc[]
+
+==== HTTPie request
+include::{snippets}/create_tender/httpie-request.adoc[]
+
+=== Add an offer to tender
+
+==== Request structure
+include::{snippets}/addOffer/http-request.adoc[]
+
+==== Example response
+include::{snippets}/addOffer/http-response.adoc[]
+
+==== CURL request
+include::{snippets}/addOffer/curl-request.adoc[]
+
+==== HTTPie request
+include::{snippets}/addOffer/httpie-request.adoc[]
+
+=== Accept offer
+
+==== Request structure
+include::{snippets}/acceptOffer/http-request.adoc[]
+
+==== Example response
+include::{snippets}/acceptOffer/http-response.adoc[]
+
+==== CURL request
+include::{snippets}/acceptOffer/curl-request.adoc[]
+
+==== HTTPie request
+include::{snippets}/acceptOffer/httpie-request.adoc[]
+
+=== Get all tenders by issuer
+
+==== Request structure
+include::{snippets}/findAllByIssuer/http-request.adoc[]
+
+==== Example response
+include::{snippets}/findAllByIssuer/http-response.adoc[]
+
+==== CURL request
+include::{snippets}/findAllByIssuer/curl-request.adoc[]
+
+==== HTTPie request
+include::{snippets}/findAllByIssuer/httpie-request.adoc[]
+
+=== Get all offers on tender by bidder
+
+==== Request structure
+include::{snippets}/getAllOffers/http-request.adoc[]
+
+==== Example response
+include::{snippets}/getAllOffers/http-response.adoc[]
+
+==== CURL request
+include::{snippets}/getAllOffers/curl-request.adoc[]
+
+==== HTTPie request
+include::{snippets}/getAllOffers/httpie-request.adoc[]
+
+== Offer API
+
+=== Get all offers by bidder
+
+==== Request structure
+include::{snippets}/getOffersByBidderId/http-request.adoc[]
+
+==== Example response
+include::{snippets}/getOffersByBidderId/http-response.adoc[]
+
+==== CURL request
+include::{snippets}/getOffersByBidderId/curl-request.adoc[]
+
+==== HTTPie request
+include::{snippets}/getOffersByBidderId/httpie-request.adoc[]
