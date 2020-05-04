@@ -1,5 +1,12 @@
 package com.homework.biddingapp.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doCallRealMethod;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import com.homework.biddingapp.entity.Currency;
 import com.homework.biddingapp.entity.Offer;
 import com.homework.biddingapp.entity.OfferStatus;
@@ -8,6 +15,12 @@ import com.homework.biddingapp.model.OfferDto;
 import com.homework.biddingapp.model.TenderDto;
 import com.homework.biddingapp.repository.OfferRepository;
 import com.homework.biddingapp.repository.TenderRepository;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Set;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,28 +28,16 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.math.BigDecimal;
-import java.util.*;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-
 @ExtendWith(MockitoExtension.class)
 public class TenderServiceTest {
 
-  @InjectMocks
-  private TenderService tenderService;
+  @InjectMocks private TenderService tenderService;
 
-  @Mock
-  private OfferService offerService;
+  @Mock private OfferService offerService;
 
-  @Mock
-  private OfferRepository offerRepository;
+  @Mock private OfferRepository offerRepository;
 
-  @Mock
-  private TenderRepository tenderRepository;
+  @Mock private TenderRepository tenderRepository;
 
   @Test
   public void createTender() {
@@ -125,21 +126,24 @@ public class TenderServiceTest {
 
   @Test
   public void acceptNonExistingOfferException() {
-    Assertions.assertThrows(NoSuchElementException.class, () -> {
-      Offer acceptedOffer = new Offer(1l, "this is description", new BigDecimal("1"), Currency.USD);
-      acceptedOffer.setId(1);
-      OfferDto acceptedOfferDto = new OfferDto(acceptedOffer);
+    Assertions.assertThrows(
+        NoSuchElementException.class,
+        () -> {
+          Offer acceptedOffer =
+              new Offer(1l, "this is description", new BigDecimal("1"), Currency.USD);
+          acceptedOffer.setId(1);
+          OfferDto acceptedOfferDto = new OfferDto(acceptedOffer);
 
-      Tender tender = new Tender(1, 2, "this is work description");
+          Tender tender = new Tender(1, 2, "this is work description");
 
-      when(offerService.create(acceptedOfferDto)).thenReturn(acceptedOffer);
-      when(tenderRepository.findById(1l)).thenReturn(java.util.Optional.of(tender));
-      when(tenderRepository.save(tender)).thenReturn(tender);
+          when(offerService.create(acceptedOfferDto)).thenReturn(acceptedOffer);
+          when(tenderRepository.findById(1l)).thenReturn(java.util.Optional.of(tender));
+          when(tenderRepository.save(tender)).thenReturn(tender);
 
-      tenderService.addOffer(1l, acceptedOfferDto);
+          tenderService.addOffer(1l, acceptedOfferDto);
 
-      tenderService.acceptOffer(1l, 2l);
-    });
+          tenderService.acceptOffer(1l, 2l);
+        });
   }
 
   @Test
@@ -183,7 +187,6 @@ public class TenderServiceTest {
     assertEquals(2, allOffersForTender.size());
   }
 
-
   @Test
   public void getOffersForTenderAndBidder() {
     Offer offer1 = new Offer(1l, "this is description1", new BigDecimal("2"), Currency.USD);
@@ -208,5 +211,4 @@ public class TenderServiceTest {
 
     assertEquals(1, offers.size());
   }
-
 }

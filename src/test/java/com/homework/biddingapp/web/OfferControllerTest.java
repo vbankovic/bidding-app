@@ -1,12 +1,22 @@
 package com.homework.biddingapp.web;
 
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import com.homework.biddingapp.entity.Currency;
 import com.homework.biddingapp.entity.Offer;
 import com.homework.biddingapp.entity.Tender;
 import com.homework.biddingapp.repository.OfferRepository;
 import com.homework.biddingapp.repository.TenderRepository;
 import com.homework.biddingapp.service.OfferService;
-import org.junit.jupiter.api.*;
+import java.math.BigDecimal;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -20,13 +30,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.math.BigDecimal;
-
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-
 @SpringBootTest
 @AutoConfigureMockMvc
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
@@ -35,17 +38,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class OfferControllerTest {
 
-  @Autowired
-  OfferService service;
+  @Autowired OfferService service;
 
-  @Autowired
-  private TenderRepository tenderRepository;
+  @Autowired private TenderRepository tenderRepository;
 
-  @Autowired
-  private OfferRepository offerRepository;
+  @Autowired private OfferRepository offerRepository;
 
-  @Autowired
-  private MockMvc mockMvc;
+  @Autowired private MockMvc mockMvc;
 
   private long bidderId;
 
@@ -64,9 +63,13 @@ public class OfferControllerTest {
   }
 
   @BeforeEach
-  public void setUp(WebApplicationContext webApplicationContext, RestDocumentationContextProvider restDocumentation) {
-    this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext) //
-                                  .apply(documentationConfiguration(restDocumentation)).build(); //
+  public void setUp(
+      WebApplicationContext webApplicationContext,
+      RestDocumentationContextProvider restDocumentation) {
+    this.mockMvc =
+        MockMvcBuilders.webAppContextSetup(webApplicationContext) //
+            .apply(documentationConfiguration(restDocumentation))
+            .build(); //
   }
 
   @AfterAll
@@ -77,7 +80,8 @@ public class OfferControllerTest {
 
   @Test
   public void getOffersByBidderId() throws Exception {
-    mockMvc.perform(get("/v1/offers/{bidder_id}", bidderId))
+    mockMvc
+        .perform(get("/v1/offers/{bidder_id}", bidderId))
         .andExpect(status().isOk())
         .andDo(document("getOffersByBidderId"));
   }

@@ -4,9 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.homework.biddingapp.entity.Currency;
 import com.homework.biddingapp.entity.Offer;
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
+import org.junit.jupiter.api.Test;
 
 public class OfferDtoTest {
 
@@ -21,6 +20,5 @@ public class OfferDtoTest {
     assertEquals(offer.getPrice().toString(), offerDto.getPrice());
     assertEquals(String.valueOf(offer.getCurrency()), offerDto.getCurrency());
     assertEquals(String.valueOf(offer.getStatus()), offerDto.getStatus());
-
   }
 }

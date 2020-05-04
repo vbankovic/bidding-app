@@ -1,5 +1,7 @@
 package com.homework.biddingapp.entity;
 
 public enum OfferStatus {
-    ACCEPTED, REJECTED, PENDING;
-  }
+  ACCEPTED,
+  REJECTED,
+  PENDING;
+}

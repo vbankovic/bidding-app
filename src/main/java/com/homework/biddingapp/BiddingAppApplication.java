@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BiddingAppApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BiddingAppApplication.class, args);
-	}
-
+  public static void main(String[] args) {
+    SpringApplication.run(BiddingAppApplication.class, args);
+  }
 }

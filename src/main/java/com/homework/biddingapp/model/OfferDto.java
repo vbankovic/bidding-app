@@ -1,21 +1,14 @@
 package com.homework.biddingapp.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.homework.biddingapp.entity.Currency;
 import com.homework.biddingapp.entity.Offer;
-import com.homework.biddingapp.entity.OfferStatus;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.math.BigDecimal;
 
 @Getter
 @Setter

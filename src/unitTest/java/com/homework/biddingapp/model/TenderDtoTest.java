@@ -1,18 +1,17 @@
 package com.homework.biddingapp.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.homework.biddingapp.entity.Currency;
 import com.homework.biddingapp.entity.Offer;
 import com.homework.biddingapp.entity.Tender;
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 public class TenderDtoTest {
 
@@ -43,6 +42,5 @@ public class TenderDtoTest {
     assertEquals(expected.get(0).getPrice(), actual.get(0).getPrice());
     assertEquals(expected.get(0).getCurrency(), actual.get(0).getCurrency());
     assertEquals(expected.get(0).getStatus(), actual.get(0).getStatus());
-
   }
 }
